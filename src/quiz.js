@@ -43,6 +43,21 @@ hasEnded(){
     }
 
 }
+filterQuestionsByDifficulty(difficulty){
+    
+       if (typeof difficulty !== "number" || difficulty < 1 || difficulty > 3) {
+        console.log(`Difficulty is not between 1 and 3.`);
+         } else{
+         this.questions = this.questions.filter(question => question.difficulty === difficulty)};
+    }
 
+    averageDifficulty(){
+        const sum = this.questions.reduce(function(acc,question){
+           return acc + question.difficulty;
+        },0);
+            return sum/this.questions.length;
 
-}
+        }
+
+            
+    }

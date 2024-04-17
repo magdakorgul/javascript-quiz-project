@@ -31,6 +31,7 @@ checkAnswer(answer){
     if (currentQuestion.answer === answer){
         this.correctAnswers++;
     }
+    
 
 }
 hasEnded(){
@@ -59,5 +60,6 @@ filterQuestionsByDifficulty(difficulty){
 
         }
 
-            
+     
+
     }

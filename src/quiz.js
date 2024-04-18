@@ -12,54 +12,55 @@ class Quiz{
     getQuestion(){
         return this.questions[this.currentQuestionIndex];
     }
- moveToNextQuestion(){
-    this.currentQuestionIndex++;
- }
- shuffleQuestions(){
-    for (let i=0; i<this.questions.length; i++){
-        const j = Math.random()* (i+1); i++;
-        let newPosition = this.questions[i];
-        this.questions[i] = this.questions[j];
-        this.questions[j] = newPosition;
-
- }   
-
-}
-checkAnswer(answer){
-
-    const currentQuestion = this.getQuestion();
-    if (currentQuestion.answer === answer){
-        this.correctAnswers++;
+    moveToNextQuestion(){
+        this.currentQuestionIndex++;
+     }
+        
+     shuffleQuestions(){
+        for (let i = 0; i < this.questions.length; i++) {
+            const j = Math.floor(Math.random() * (i + 1));
+            let temp = this.questions[i];
+            this.questions[i] = this.questions[j];
+            this.questions[j] = temp;
+        }
     }
     
+       
+        checkAnswer(answer){
 
-}
-hasEnded(){
-    if (this.currentQuestionIndex < this.questions.length){
-        return false;
-    }else if 
-        (this.currentQuestionIndex === this.questions.length){
-            return true;
+        const currentQuestion = this.getQuestion();
+        if (currentQuestion.answer === answer){
+            this.correctAnswers++;
+        }
     
     }
-
-}
-filterQuestionsByDifficulty(difficulty){
+    hasEnded(){
+        if (this.currentQuestionIndex < this.questions.length){
+            return false;
+        }else if 
+            (this.currentQuestionIndex === this.questions.length){
+                return true;
+        
+        }
     
-       if (typeof difficulty !== "number" || difficulty < 1 || difficulty > 3) {
-        console.log(`Difficulty is not between 1 and 3.`);
-         } else{
-         this.questions = this.questions.filter(question => question.difficulty === difficulty)};
     }
-
-    averageDifficulty(){
-        const sum = this.questions.reduce(function(acc,question){
-           return acc + question.difficulty;
-        },0);
-            return sum/this.questions.length;
-
+    
+    filterQuestionsByDifficulty(difficulty){
+    
+        if (typeof difficulty !== "number" || difficulty < 1 || difficulty > 3) {
+            console.log(`Difficulty is not between 1 and 3.`);
+             } else{
+             this.questions = this.questions.filter(question => question.difficulty === difficulty)};
         }
 
-     
-
+        averageDifficulty() {
+            const sum = this.questions.reduce(function(acc, question) {
+                return acc + question.difficulty;
+            }, 0);
+        
+            return sum / this.questions.length;
+        }
+        
     }
+    
+

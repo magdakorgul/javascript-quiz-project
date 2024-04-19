@@ -52,17 +52,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
     const timeRemainingContainer = document.getElementById("timeRemaining");
     timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+    
 }
 
   // Show first question
   showQuestion();
 
-
+  
   /************  TIMER  ************/
   let timer;
+  function StartTheTimer() {
   timer = setInterval(() =>{
-        quiz.timeRemaining--;
-    updateTimer();
+   quiz.timeRemaining--;
+   updateTimer();
   
 
   if(quiz.timeRemaining<=0) 
@@ -71,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }   
 
   },1000);
+}
+StartTheTimer() 
 
    /************  EVENT LISTENERS  ************/
 
@@ -83,8 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.currentQuestionIndex=0;
     quiz.correctAnswers=0;
     quiz.shuffleQuestions();
+    quiz.timeRemaining = quizDuration;
+    showQuestion();
     updateTimer();
-
+    clearInterval(timer);
+    StartTheTimer() 
     
   });
 

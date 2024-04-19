@@ -11,6 +11,6 @@ class Question{
             let temp = this.choices[i];
             this.choices[i] = this.choices[j];
             this.choices[j] = temp;
-       }
-}
+        }
+    }
 }

@@ -17,16 +17,16 @@ class Quiz{
      }
         
      shuffleQuestions(){
-        for (let i=0; i<this.questions.length; i++){
-            const j = Math.random()* (i+1); i++;
-            let newPosition = this.questions[i];
+        for (let i = 0; i < this.questions.length; i++) {
+            const j = Math.floor(Math.random() * (i + 1));
+            let temp = this.questions[i];
             this.questions[i] = this.questions[j];
-            this.questions[j] = newPosition;
-    
-     }   
-    
+            this.questions[j] = temp;
+        }
     }
-    checkAnswer(answer){
+    
+       
+        checkAnswer(answer){
 
         const currentQuestion = this.getQuestion();
         if (currentQuestion.answer === answer){
@@ -44,5 +44,23 @@ class Quiz{
         }
     
     }
+    
+    filterQuestionsByDifficulty(difficulty){
+    
+        if (typeof difficulty !== "number" || difficulty < 1 || difficulty > 3) {
+            console.log(`Difficulty is not between 1 and 3.`);
+             } else{
+             this.questions = this.questions.filter(question => question.difficulty === difficulty)};
+        }
+
+        averageDifficulty() {
+            const sum = this.questions.reduce(function(acc, question) {
+                return acc + question.difficulty;
+            }, 0);
+        
+            return sum / this.questions.length;
+        }
+        
     }
+    
 
